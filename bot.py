@@ -10,7 +10,6 @@ tree = discord.app_commands.CommandTree(client)
 @client.event
 async def on_ready():
     await tree.sync(guild=discord.Object(id=server_id))
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="бот от злого грифера"))
     print("Ready")
 
 @tree.command(name = "faceit", description = "Get faceit profile", guild=discord.Object(id=server_id))

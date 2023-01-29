@@ -9,10 +9,10 @@ tree = discord.app_commands.CommandTree(client)
 
 @client.event
 async def on_ready():
-    await tree.sync(guild=discord.Object(id=846071090258378832))
+    await tree.sync(guild=discord.Object(id=server_id))
     print("Ready")
 
-@tree.command(name = "faceit", description = "Get faceit profile", guild=discord.Object(id=846071090258378832))
+@tree.command(name = "faceit", description = "Get faceit profile", guild=discord.Object(id=server_id))
 async def faceit(interaction, nickname: str):
     try:
         stats = Pyfaceit(nickname).player_stats()

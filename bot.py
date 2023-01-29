@@ -3,13 +3,14 @@ from pyfaceit import Pyfaceit
 
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
-token = 'MTA2OTI1MDUyNTMzOTU5MDY1Nw.G0YO3u._PuKCONdQuRt_yviDU2YBjkbJIYX1ZTW_gAA94'
-server_id = '846071090258378832'
+token = 'YOURTOKEN'
+server_id = 'YOURSERVERID'
 tree = discord.app_commands.CommandTree(client)
 
 @client.event
 async def on_ready():
     await tree.sync(guild=discord.Object(id=server_id))
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="бот от злого грифера"))
     print("Ready")
 
 @tree.command(name = "faceit", description = "Get faceit profile", guild=discord.Object(id=server_id))

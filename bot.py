@@ -11,7 +11,7 @@ tree = discord.app_commands.CommandTree(client)
 async def on_ready():
     await tree.sync(guild=discord.Object(id=server_id))
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="от злого грифера"))
-    print("Ready")
+    print("https://discord.com/api/oauth2/authorize?client_id=1069250525339590657&permissions=8&scope=applications.commands%20bot")
 
 @tree.command(name = "stats", description = "Get faceit player's statistics", guild=discord.Object(id=server_id))
 async def faceit(interaction, nickname: str):

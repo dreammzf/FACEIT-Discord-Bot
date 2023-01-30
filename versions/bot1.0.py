@@ -10,7 +10,7 @@ tree = discord.app_commands.CommandTree(client)
 @client.event
 async def on_ready():
     await tree.sync(guild=discord.Object(id=server_id))
-    print("Ready")
+    print("FACEIT Discord bot by dreamm working fine")
 
 @tree.command(name = "faceit", description = "Get faceit profile", guild=discord.Object(id=server_id))
 async def faceit(interaction, nickname: str):

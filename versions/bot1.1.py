@@ -4,7 +4,7 @@ from pyfaceit import Pyfaceit
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 token = 'YOURTOKEN'
-server_id = 'YOURSERVERID'
+server_id = YOURSERVERID
 tree = discord.app_commands.CommandTree(client)
 
 @client.event

@@ -11,7 +11,6 @@ tree = discord.app_commands.CommandTree(client)
 async def on_ready():
     await tree.sync()
     await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="statistics"))
-    print("FACEIT Discord bot by dreamm working fine")
 
 
 @tree.command(name="stats", description="Get faceit player's statistics")

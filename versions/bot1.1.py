@@ -4,15 +4,17 @@ from pyfaceit import Pyfaceit
 intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 token = 'YOURTOKEN'
-server_id = YOURSERVERID
 tree = discord.app_commands.CommandTree(client)
+
 
 @client.event
 async def on_ready():
-    await tree.sync(guild=discord.Object(id=server_id))
+    await tree.sync()
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="statistics"))
     print("FACEIT Discord bot by dreamm working fine")
 
-@tree.command(name = "stats", description = "Get faceit player's statistics", guild=discord.Object(id=server_id))
+
+@tree.command(name="stats", description="Get faceit player's statistics")
 async def faceit(interaction, nickname: str):
     try:
         await interaction.response.defer()
@@ -35,7 +37,7 @@ async def faceit(interaction, nickname: str):
                 recent_results += "W"
             recent_results += " "
         recent_results = recent_results[:-1]
-        emb = discord.Embed(title=nickname+" :flag_"+flag+":", description=
+        emb = discord.Embed(title=nickname + " :flag_" + flag + ":", description=
         "Matches: " + matches
         + "\nWins: " + wins
         + '\n'
@@ -47,11 +49,13 @@ async def faceit(interaction, nickname: str):
         emb.set_image(url=avatar)
         await interaction.followup.send(embed=emb)
     except:
-        emb = discord.Embed(title=nickname, description="Faceit profile with this nickname doesn't exist", colour=discord.Colour.red())
+        emb = discord.Embed(title=nickname, description="Faceit profile with this nickname doesn't exist",
+                            colour=discord.Colour.red())
         emb.set_image(url="https://i.imgur.com/F8KwoyM.png")
         await interaction.followup.send(embed=emb)
 
-@tree.command(name = "elo", description = "Get faceit player's elo", guild=discord.Object(id=server_id))
+
+@tree.command(name="elo", description="Get faceit player's elo")
 async def faceit(interaction, nickname: str):
     try:
         await interaction.response.defer()
@@ -71,14 +75,16 @@ async def faceit(interaction, nickname: str):
         if (level == 10):
             level_emoji = ":red_circle:"
         elo = info_games_csgo.get("faceit_elo")
-        emb = discord.Embed(title=nickname+" :flag_"+flag+":", description=
-        level_emoji+" Level " + str(level)
-        + '\n'+level_emoji+" Elo: " + str(elo), colour=discord.Colour.orange())
+        emb = discord.Embed(title=nickname + " :flag_" + flag + ":", description=
+        level_emoji + " Level " + str(level)
+        + '\n' + level_emoji + " Elo: " + str(elo), colour=discord.Colour.orange())
         emb.set_image(url=avatar)
         await interaction.followup.send(embed=emb)
     except:
-        emb = discord.Embed(title=nickname, description="Faceit profile with this nickname doesn't exist", colour=discord.Colour.red())
+        emb = discord.Embed(title=nickname, description="Faceit profile with this nickname doesn't exist",
+                            colour=discord.Colour.red())
         emb.set_image(url="https://i.imgur.com/F8KwoyM.png")
         await interaction.followup.send(embed=emb)
-        
+
+
 client.run(token)
